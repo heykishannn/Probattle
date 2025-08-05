@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Battle - Authenticate</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body class="auth-body">
+    <div class="auth-container">
+        <div class="auth-header">
+            <h2>Welcome</h2>
+            <p>Sign in to continue to Pro Battle</p>
+        </div>
+
+        <div class="auth-toggle">
+            <button class="toggle-btn active" data-target="login-form">Login</button>
+            <button class="toggle-btn" data-target="signup-form">Sign Up</button>
+        </div>
+
+        <!-- Login Form -->
+        <form id="login-form" class="auth-form active">
+            <div class="form-group">
+                <label for="login-email">Email</label>
+                <input type="email" id="login-email" class="form-control" required>
+                <div id="login-email-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="login-password">Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="login-password" class="form-control" required>
+                    <button type="button" class="password-toggle" id="toggle-login-password">👁️</button>
+                </div>
+                <div id="login-password-error" class="validation-message"></div>
+            </div>
+            <button type="submit" class="auth-btn">Login</button>
+        </form>
+
+        <!-- Signup Form -->
+        <form id="signup-form" class="auth-form">
+            <div class="form-group">
+                <label for="signup-username">Username</label>
+                <input type="text" id="signup-username" class="form-control" required>
+                <div id="signup-username-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email</label>
+                <input type="email" id="signup-email" class="form-control" required>
+                <div id="signup-email-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password</label>
+                <div style="position: relative;">
+                    <input type="password" id="signup-password" class="form-control" required>
+                    <button type="button" class="password-toggle" id="toggle-signup-password">👁️</button>
+                </div>
+                <div id="signup-password-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="signup-referral">Referral Code (Optional)</label>
+                <input type="text" id="signup-referral" class="form-control">
+            </div>
+            <button type="submit" class="auth-btn">Sign Up</button>
+        </form>
+
+        <!-- Confirmation Message (Hidden by default) -->
+        <div id="confirmation-message" class="confirmation-message hidden">
+            <h3>Check Your Email</h3>
+            <p>Confirmation link sent to your email.</p>
+            <button id="back-to-login" class="auth-btn" style="margin-top: 15px;">Back to Login</button>
+        </div>
+
+        <div class="auth-footer">
+            <p>By continuing, you agree to our <a href="#">Terms of Service</a> and <a href="#">Privacy Policy</a>.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://arwpuyiwuvfvlggrjmdp.supabase.co';
+        // IMPORTANT: You need to get this key from your Supabase project settings
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeAuth();
+        });
+    </script>
+</body>
+</html>

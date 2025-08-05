@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Battle - Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Include Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="home-body"> <!-- Reuse home-body for consistency -->
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="home.html" class="nav-icon-btn">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="nav-center">
+            <h3 style="color: var(--gold-primary);">My Wallet</h3>
+        </div>
+        <div class="nav-right">
+            <!-- Balance display -->
+            <div style="font-size: 1.1rem; font-weight: bold;">
+                ₹<span id="current-balance">0.00</span>
+            </div>
+        </div>
+    </nav>
+
+    <div style="padding: 20px; flex-grow: 1; overflow-y: auto;">
+        <!-- Wallet Tabs -->
+        <div style="display: flex; background: rgba(0, 0, 0, 0.2); border-radius: 10px; margin-bottom: 20px;">
+            <button id="add-funds-tab" class="toggle-btn active" style="flex: 1; padding: 12px; border-radius: 10px;">Add Funds</button>
+            <button id="withdraw-funds-tab" class="toggle-btn" style="flex: 1; padding: 12px; border-radius: 10px;">Withdraw</button>
+        </div>
+
+        <!-- Add Funds Form -->
+        <form id="add-funds-form" class="auth-form active">
+            <div class="form-group">
+                <label for="add-amount">Amount (₹)</label>
+                <input type="number" id="add-amount" class="form-control" placeholder="Enter amount" min="10" required>
+                <div id="add-amount-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="add-upi-id">Your UPI ID</label>
+                <input type="text" id="add-upi-id" class="form-control" placeholder="e.g., mobile@upi" required>
+                <div id="add-upi-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="add-screenshot">Payment Screenshot</label>
+                <input type="file" id="add-screenshot" class="form-control" accept="image/*" required>
+                <div id="add-screenshot-error" class="validation-message"></div>
+            </div>
+            <button type="submit" class="auth-btn">Submit for Approval</button>
+        </form>
+
+        <!-- Withdraw Funds Form -->
+        <form id="withdraw-funds-form" class="auth-form">
+            <div class="form-group">
+                <label for="withdraw-amount">Amount (₹)</label>
+                <input type="number" id="withdraw-amount" class="form-control" placeholder="Enter amount" min="10" required>
+                <div id="withdraw-amount-error" class="validation-message"></div>
+            </div>
+            <div class="form-group">
+                <label for="withdraw-upi-id">Withdraw to UPI ID</label>
+                <input type="text" id="withdraw-upi-id" class="form-control" placeholder="e.g., mobile@upi" required>
+                <div id="withdraw-upi-error" class="validation-message"></div>
+            </div>
+            <button type="submit" class="auth-btn">Request Withdrawal</button>
+        </form>
+    </div>
+
+    <!-- Footer Navigation -->
+    <nav class="footer-nav">
+        <a href="home.html" class="footer-link">
+            <ion-icon name="home-outline" class="footer-icon"></ion-icon>
+            <span>Home</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="calendar-outline" class="footer-icon"></ion-icon>
+            <span>My Matches</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="time-outline" class="footer-icon"></ion-icon>
+            <span>History</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="chatbubble-ellipses-outline" class="footer-icon"></ion-icon>
+            <span>Chat</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="share-social-outline" class="footer-icon"></ion-icon>
+            <span>Referral</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://arwpuyiwuvfvlggrjmdp.supabase.co';
+        // IMPORTANT: You need to get this key from your Supabase project settings
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWallet();
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Battle - Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Include Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="home-body"> <!-- Reuse home-body for consistency -->
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <a href="home.html" class="nav-icon-btn">
+                <ion-icon name="arrow-back-outline"></ion-icon>
+            </a>
+        </div>
+        <div class="nav-center">
+            <h3 style="color: var(--gold-primary);">My Profile</h3>
+        </div>
+        <div class="nav-right">
+            <!-- Save button will appear when editing -->
+            <button id="save-profile-btn" class="auth-btn hidden" style="font-size: 0.9rem; padding: 5px 10px;">Save</button>
+        </div>
+    </nav>
+
+    <div style="padding: 20px; flex-grow: 1; overflow-y: auto;">
+        <!-- Profile Header -->
+        <div style="display: flex; flex-direction: column; align-items: center; margin-bottom: 30px;">
+            <div style="position: relative; margin-bottom: 15px;">
+                <!-- Profile Picture - Placeholder -->
+                <img id="profile-pic" src="https://via.placeholder.com/100/FFD700/000000?text=PB" alt="Profile" style="width: 100px; height: 100px; border-radius: 50%; border: 2px solid var(--gold-primary); object-fit: cover;">
+                <button id="change-pic-btn" class="nav-icon-btn" style="position: absolute; bottom: 0; right: 0; background: var(--gold-primary); color: #000; width: 30px; height: 30px; font-size: 1rem;">
+                    <ion-icon name="camera-outline"></ion-icon>
+                </button>
+                <input type="file" id="profile-pic-input" accept="image/*" class="hidden">
+            </div>
+            <h2 id="profile-username">Loading...</h2>
+            <p style="color: var(--text-secondary);">UID: <span id="profile-uid">XXXXXXXXXX</span></p>
+        </div>
+
+        <!-- Profile Form -->
+        <form id="profile-form">
+            <div class="form-group">
+                <label for="profile-name">Full Name</label>
+                <input type="text" id="profile-name" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <label for="profile-email">Email</label>
+                <input type="email" id="profile-email" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <label for="profile-age">Age</label>
+                <input type="number" id="profile-age" class="form-control" min="13" max="100" disabled>
+            </div>
+            <div class="form-group">
+                <label for="profile-gender">Gender</label>
+                <select id="profile-gender" class="form-control" disabled>
+                    <option value="">Select</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="profile-state">State</label>
+                <input type="text" id="profile-state" class="form-control" disabled>
+            </div>
+            <div class="form-group">
+                <label for="profile-country">Country</label>
+                <input type="text" id="profile-country" class="form-control" disabled>
+            </div>
+        </form>
+
+        <!-- Edit Button -->
+        <button id="edit-profile-btn" class="auth-btn" style="width: 100%; margin-top: 20px;">Edit Profile</button>
+
+        <!-- Win Stats Section -->
+        <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.1);">
+            <h3 style="color: var(--gold-primary); margin-bottom: 15px;">Win Stats</h3>
+            <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; text-align: center;">
+                <div style="background: var(--glass-bg); padding: 15px; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--gold-primary);">0</div>
+                    <div style="font-size: 0.9rem;">Wins</div>
+                </div>
+                <div style="background: var(--glass-bg); padding: 15px; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--gold-primary);">0</div>
+                    <div style="font-size: 0.9rem;">Losses</div>
+                </div>
+                <div style="background: var(--glass-bg); padding: 15px; border-radius: 10px;">
+                    <div style="font-size: 1.5rem; font-weight: bold; color: var(--gold-primary);">0</div>
+                    <div style="font-size: 0.9rem;">Total Games</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Navigation -->
+    <nav class="footer-nav">
+        <a href="home.html" class="footer-link">
+            <ion-icon name="home-outline" class="footer-icon"></ion-icon>
+            <span>Home</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="calendar-outline" class="footer-icon"></ion-icon>
+            <span>My Matches</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="time-outline" class="footer-icon"></ion-icon>
+            <span>History</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="chatbubble-ellipses-outline" class="footer-icon"></ion-icon>
+            <span>Chat</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="share-social-outline" class="footer-icon"></ion-icon>
+            <span>Referral</span>
+        </a>
+    </nav>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://arwpuyiwuvfvlggrjmdp.supabase.co';
+        // IMPORTANT: You need to get this key from your Supabase project settings
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeProfile();
+        });
+    </script>
+</body>
+</html>

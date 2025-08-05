@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pro Battle - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- Include Supabase JS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Include Ionicons for icons -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body class="home-body">
+    <!-- Top Navigation Bar -->
+    <nav class="top-nav">
+        <div class="nav-left">
+            <button class="hamburger-menu" id="open-settings">
+                <ion-icon name="menu-outline"></ion-icon>
+            </button>
+        </div>
+        <div class="nav-center">
+            <!-- App title or logo can go here if needed -->
+        </div>
+        <div class="nav-right">
+            <!-- Profile Picture - Placeholder -->
+            <img src="https://via.placeholder.com/40/FFD700/000000?text=PB" alt="Profile" class="profile-pic-nav">
+            <a href="wallet.html" class="nav-icon-btn">
+                <ion-icon name="wallet-outline"></ion-icon>
+            </a>
+            <a href="#" class="nav-icon-btn">
+                <ion-icon name="notifications-outline"></ion-icon>
+            </a>
+            <a href="spin.html" class="nav-icon-btn">
+                <ion-icon name="sync-outline"></ion-icon>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Banner Slider -->
+    <div class="banner-slider" id="banner-slider">
+        <!-- Slides will be injected by JS -->
+    </div>
+
+    <!-- Tournaments Section -->
+    <section class="tournaments-section">
+        <div class="section-title">
+            <h2>Popular Tournaments</h2>
+            <a href="#" class="view-more-link">View More</a>
+        </div>
+        <div class="tournament-grid" id="tournament-grid">
+            <!-- Tournament cards will be injected by JS -->
+            <!-- Placeholder cards for now -->
+            <div class="tournament-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=FF" alt="Free Fire" class="tournament-icon">
+                <div class="tournament-name">Free Fire</div>
+            </div>
+            <div class="tournament-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=BGMI" alt="BGMI" class="tournament-icon">
+                <div class="tournament-name">BGMI</div>
+            </div>
+            <div class="tournament-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=CODM" alt="CODM" class="tournament-icon">
+                <div class="tournament-name">CODM</div>
+            </div>
+            <div class="tournament-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=Valorant" alt="Valorant" class="tournament-icon">
+                <div class="tournament-name">Valorant</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Games Section -->
+    <section class="games-section">
+        <div class="section-title">
+            <h2>Play Games</h2>
+        </div>
+        <div class="games-grid">
+            <a href="games/mines.html" class="game-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=Mines" alt="Mines" class="game-icon">
+                <div class="game-name">Mines</div>
+            </a>
+            <a href="games/ludo.html" class="game-card">
+                <img src="https://via.placeholder.com/60/FFD700/000000?text=Ludo" alt="Ludo" class="game-icon">
+                <div class="game-name">Ludo</div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer Navigation -->
+    <nav class="footer-nav">
+        <a href="home.html" class="footer-link active">
+            <ion-icon name="home-outline" class="footer-icon"></ion-icon>
+            <span>Home</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="calendar-outline" class="footer-icon"></ion-icon>
+            <span>My Matches</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="time-outline" class="footer-icon"></ion-icon>
+            <span>History</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="chatbubble-ellipses-outline" class="footer-icon"></ion-icon>
+            <span>Chat</span>
+        </a>
+        <a href="#" class="footer-link">
+            <ion-icon name="share-social-outline" class="footer-icon"></ion-icon>
+            <span>Referral</span>
+        </a>
+    </nav>
+
+    <!-- Settings Menu (Initially Hidden) -->
+    <div class="settings-menu" id="settings-menu">
+        <div class="settings-content">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button class="close-settings" id="close-settings">&times;</button>
+            </div>
+            <div class="settings-group">
+                <h4>Preferences</h4>
+                <div class="toggle-label">
+                    <span>Language</span>
+                    <select id="language-select" class="form-control" style="width: auto; padding: 5px;">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+            </div>
+            <div class="settings-group">
+                <h4>Sound</h4>
+                <div class="toggle-label">
+                    <span>Tap Sound</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="tap-sound-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="toggle-label">
+                    <span>Notification Sound</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="notification-sound-toggle" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="settings-group">
+                <h4>Account</h4>
+                <a href="profile.html" style="display: block; margin-bottom: 10px; color: var(--gold-primary); text-decoration: none;">Profile</a>
+                <button id="logout-btn" class="auth-btn" style="width: 100%;">Logout</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Initialize Supabase
+        const SUPABASE_URL = 'https://arwpuyiwuvfvlggrjmdp.supabase.co';
+        // IMPORTANT: You need to get this key from your Supabase project settings
+        const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_ANON_KEY_HERE';
+        const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeHome();
+        });
+    </script>
+</body>
+</html>
